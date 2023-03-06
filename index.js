@@ -37,7 +37,7 @@ const __dirname = path.dirname(__filename);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //import GenerateSudoku from path.join(__dirname, 'generateSudoku.js')
-//import { GenerateSudoku } from "./generateSudoku";
+import { GenerateSudoku } from "./generateSudoku";
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
