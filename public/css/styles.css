@@ -1,0 +1,42 @@
+table {
+    margin:1em auto;
+  }
+  td.tile-start{
+      background-color: whitesmoke;
+  }
+  td.number-selected{
+      background-color: gray;
+  }
+  
+  td.boardCell {
+    height:48px;
+    width:48px;
+    border:1px solid;
+    text-align:center;
+    font-size: 25px;
+  }
+  
+  td.boardCell:first-child {
+    border-left:solid;
+  
+  }
+  td.boardCell:nth-child(3n) {
+    border-right:solid ;
+  }
+  
+  tr.boardRow:first-child td{
+    border-top:solid;
+  }
+  tr.boardRow:nth-child(3n) td {
+    border-bottom:solid ;
+  }
+  
+  
+  .number{
+      
+      background-color: cyan;
+      opacity: 0.8;
+      padding-bottom: 0%;
+      padding-top: 0%;
+    
+  }

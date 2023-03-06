@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+	<style>
+		table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+		}
+
+		td, th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+		background-color: #dddddd;
+		}
+	</style>
+
+	<div class="row justify-content-center mt-5">
+		<div class="col-md-10">
+			<table>
+			<% if(records.length >0){ %>
+				<tr>
+					<th>Difficulty</th>
+					<th>Points Scored</th>
+					<th>Remaining Time</th>
+					<th>Remaining lives</th>
+					<th>Date</th>
+				</tr>
+			<% } %>
+			<% if(records.length){ %>
+				<!-- <div class="list-group"> -->
+					<% records.forEach(function(record){ %>
+					<tr>
+						<td><%= record.difficulty %></td>
+						<td><%= record.points %>&nbsp&nbsp</td>
+						<td><%= record.timer %>&nbsp&nbsp</td>
+						<td><%= record.life %>&nbsp&nbsp</td>
+						<td><%= record.date %></td>
+					</tr>
+											
+			<% }) }else{ %>
+			</table>
+					<div class="text-center">
+						<h2>Looks like you haven't played any matches! Play now.</h2>
+						<br>
+						<a role="button" class="btn btn-primary" href="/newgame">New Game</a>
+					</div>
+					<% } %>
+		</div>
+	</div>
+
+<%- include('partials/footer') %>

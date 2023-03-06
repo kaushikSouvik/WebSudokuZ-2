@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<h1>Rules of SUDOKU ?</h1>
+<ul>
+	<li>Every row must contain all elements from 1 to 9, once</li>
+	<li>Every column must contain all elements from 1 to 9, once</li>
+	<li>The digits can only occur once per block (nonet).A regular 9 x 9 grid is divided into 9 smaller blocks of 3 x 3, also known as nonets.</li>
+	<li>The sum of every single row, column and nonet must equal 45</li>
+</ul>
+
+<p>Once the user clicks on 'New Game' in navingation bar, a new unique sudoku is generated everytime(using a Backtracking algorithm),based on difficulty as stated by the user.</p>
+
+<p>Here difficulty level is implemented based on number of filled cells and the available time in timer.</p>
+<ul>
+<li>An easy sudoku has 43 filled cells and available time is 10 minutes.</li>
+<li>A medium sudoku has 38 filled cells and available time is 15 minutes</li>
+<li>An hard sudoku has 31 filled cells and available time is 20 minutes</li>
+<li>Also you will have limited attempts before you lose out all the lives of the match</li>
+</ul>
+
+<p>To view the records of the sudoku previously played, a user can click on 'Records' in navigation bar. Using this functionality,user can track his/her improvement.</p>
+
+
+<h2>Hope you like it. Thank You!</h2>
+<%- include('partials/footer') %>

@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+<br>
+    <br>
+    <br>
+    <head>
+        <style>
+    .footer {
+       position: fixed;
+       left: 0;
+       bottom: 0;
+       width: 100%;
+       background-color: #ff00ff;
+       color: black;
+       text-align: center;
+    }
+
+    </style>
+    </head>
+<div class="row justify-content-center mt-5">
+        <div class="col-md-7 text-center">
+
+                 <h2>Play Sudoku. Woooo!</h2>
+            <h5>Sudoku  May Help Keep Your Brain 10 Years Younger !</h5>
+            <h5>So what are you waiting for?</h5>
+            <h5>Come and play SUDOKU online here,for FREE!</h5>
+            <% if(isItAuthenticated){ %>
+                
+        <a role="button" class="btn btn-primary btn-lg" href="/newgame">New Game</a>
+            <% }else{ %>
+        <a role="button" class="btn btn-primary btn-lg" href="/register">Start</a>
+            <% } %>
+        </div>
+    </div>
+    <div style="background-color:pink;text-align: center;" class="footer" >
+        <p><b>Developed with &#10084 by Kaushik and Souvik!</b></p>
+    </div>
+
+<%- include('partials/footer') %>

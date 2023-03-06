@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+	<div style="text-align: center;border: 2px solid black;">
+
+		<% if(points==0){ %>
+			<div class="alert alert-danger" role="alert">
+				<p>
+					<%=message %>
+				</p>
+			</div>
+			<% }else{ %>
+				<div class="alert alert-success" role="alert">
+					<p>
+						<%=message %>
+					</p>
+				</div>
+				<% } %>
+
+					<p>Here is your result:</p>
+
+					<p>Difficulty : <%= difficulty %>
+					</p>
+
+					<p>Remaining time : <%= remainingTime %>
+					</p>
+
+					<p>Life Left : <%= lifeLeft %>
+					</p>
+
+					<p>Points Scored : <%= points %>
+					</p>
+
+	</div>
+
+	<%- include('partials/footer') %>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<%- include('partials/header') %>
+
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style type="text/css">
+            table {
+                margin: 1em auto;
+            }
+
+            td.tile-start {
+                background-color: #DEDEDE;
+            }
+
+            td.number-selected {
+                background-color: gray;
+            }
+
+            td {
+                height: 48px;
+                width: 48px;
+                border: 1px solid;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            td.boardCell:first-child {
+                border-left: solid;
+
+            }
+
+            td.boardCell:nth-child(3n) {
+                border-right: solid;
+            }
+
+            tr.boardRow:first-child td {
+                border-top: solid;
+            }
+
+            tr.boardRow:nth-child(3n) td {
+                border-bottom: solid;
+            }
+
+            .number {
+                background-color: cyan;
+                opacity: 0.8;
+                padding-bottom: 0%;
+                padding-top: 0%;
+            }
+        </style>
+
+        <script>
+            // e.preventDefault()
+            var numSelected = null;
+            let life = "<%= life %>";
+            var count = 81 - parseInt("<%= filled %>");
+            var difficulty = "<%= difficulty %>";
+            var finalLife = 0;
+            life = parseInt(life);
+
+
+            var board = "<%= board %>";
+            var solution = "<%= solution %>";
+
+
+            let arr1 = board.split(" ")
+            board = arr1
+
+            let arr2 = solution.split(" ")
+            solution = arr2
+
+            window.onload = function () {
+                helper()
+                setGame()
+            }
+
+
+            function setGame() {
+
+
+                // digits
+                document.getElementById("lifeP").innerHTML = "<%= life %>";
+                let table2 = document.getElementById("myTable2");
+                let row2 = table2.insertRow(0);
+
+                for (let i = 1; i <= 9; i++) {
+                    let tile2 = row2.insertCell()
+
+                    tile2.id = i.toString()
+                    tile2.innerText = i
+                    tile2.classList.add("number")
+                    tile2.addEventListener("click", selectNumber)
+                }
+
+                function selectNumber() {
+                    if (numSelected != null) {
+                        numSelected.classList.remove("number-selected")
+                    }
+
+                    numSelected = this
+                    numSelected.classList.add("number-selected")
+                }
+
+                var table = document.getElementById("myTable");
+                for (let r = 0; r < 9; r++) {
+                    let row = table.insertRow(r);
+                    row.classList.add("boardRow")
+                    for (let c = 0; c < 9; c++) {
+                        let tile = row.insertCell(c);
+
+                        tile.id = r.toString() + "-" + c.toString()
+                        tile.classList.add("boardCell")
+                        if (board[r][c] != "-") {
+                            tile.innerText = board[r][c]
+                            tile.classList.add("tile-start")
+                        }
+
+                        tile.addEventListener("click", selectTile)
+
+                    }
+
+                }
+
+                function selectTile() {
+                    if (numSelected) {
+                        if (this.innerText != "") { return; }
+
+
+                        let coordinates = this.id.split("-")
+                        let r = parseInt(coordinates[0])
+                        let c = parseInt(coordinates[1])
+
+                        if (solution[r][c] == numSelected.id) {
+                            this.innerText = numSelected.id;
+                            count--;
+                        }
+                        else {
+                            alert("Wrong choice.Your life decreased by 1 ")
+                            life = life - 1
+
+
+                            document.getElementById("lifeP").innerHTML = life
+                            if (life == 0) {
+                                const countdownEl = document.getElementById("countdown")
+                                document.getElementById("timer").value = countdownEl.innerText
+                                document.getElementById("difficulty").value = difficulty
+
+
+                                document.getElementById("lifeInput").value = life
+
+
+                                document.getElementById("points").value = "0"
+                                document.getElementById("message").value = "Sorry! You have utilized all your lives. Better luck next time &#128542;"
+                                document.getElementById('sudoku').submit();
+                            }
+
+                        }
+                        //logic for submit
+                        if (count == 0) {
+                            const countdownEl = document.getElementById("countdown")
+                            finalLife = life
+                            document.getElementById("timer").value = countdownEl.innerText
+                            document.getElementById("difficulty").value = "<%=difficulty%>";
+                            document.getElementById("lifeInput").value = finalLife
+                            document.getElementById("message").value = "Congratulations! You did it ! &#128526;";
+                            document.getElementById("points").value = "<%=points%>";
+                            document.getElementById('sudoku').submit();
+
+                            console.log("clicked")
+                        }
+
+                    }
+                }
+            }
+
+            //timer code
+            function helper() {
+                let minutes = "<%= minutes %>"
+                minutes = parseInt(minutes)
+                const startingMins = minutes
+
+                let time = startingMins * 60
+
+                const countdownEl = document.getElementById("countdown")
+
+                setInterval(updateCountdown, 1000)
+
+                function updateCountdown() {
+                    let mins = Math.floor(time / 60)
+                    let secs = time % 60
+
+                    if (parseInt(mins) == 0 && parseInt(secs) == 0) {
+                        document.getElementById("timer").value = mins + ":" + secs;
+                        document.getElementById("difficulty").value = "<%=difficulty%>"
+                        document.getElementById("lifeInput").value = life
+                        document.getElementById("message").value = "Sorry,TimeOut !! Better luck next time &#128542; "
+                        document.getElementById("points").value = 0
+                        document.getElementById('sudoku').submit();
+                    }
+
+                    if (mins < 10) {
+                        mins = '0' + mins
+                        //countdownEl.innerHTML=`${mins}:${secs}`
+                    }
+                    if (secs < 10) {
+                        secs = '0' + secs
+                        //countdownEl.innerHTML=`${mins}:${secs}`
+                    }
+
+                    //else{
+                    countdownEl.innerHTML = `${mins}:${secs}`
+                    //}
+                    time--
+                }
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <form method="POST" name="sudoku" id="sudoku" action="/result">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-1" style="background-color:lavender;">
+                        <div>
+                            <p style="font-size: 25px; text-align: left;">TIMER</p>
+                            <p style="font-size: 30px; text-align: left;" id="countdown"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10" style="background-color:lavenderblush;">
+                        <table id="myTable"></table>
+
+                        <table id="myTable2"></table>
+                    </div>
+
+                    <div class="col-sm-1" style="background-color:lavender;">
+                        <p style="font-size: 25px; text-align: left;">LIVES</p>
+                        <p style="font-size: 30px; " id="lifeP"></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <input type="text" name="timer" value="jk" id="timer" hidden />
+            <input type="text" name="difficulty" value="df" id="difficulty" hidden />
+            <input type="text" name="life" value="k" id="lifeInput" hidden />
+            <input type="text" name="points" id="points" hidden />
+            <input type="text" name="message" value="df" id="message" hidden />
+        </form>
+    </body>
+
+    </html>
+    

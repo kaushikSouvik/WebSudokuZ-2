@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+	<style>
+		#parent-container {
+		text-align: center;
+		}
+		#centered-div {
+		margin-top: 100px;
+		padding: 20px;
+		border: 5px dashed rgb(153, 63, 153);
+		display: inline-block;
+		}
+	</style>
+	
+
+	<div id="parent-container">
+		<div id="centered-div">
+			<h2>Game Requirements</h2>
+
+			<br>
+			<form method="POST" method="POST" action="/startgame">
+				Difficulty: &nbsp&nbsp<input type="radio" name="level" id="easy" value="easy"/>
+  				<label for="easy">Easy</label>
+
+				<input type="radio" name="level" id="medium" value="medium"/>
+  				<label for="medium">Medium</label>&nbsp
+				
+				<input type="radio" name="level" id="hard" value="hard"/>
+  				<label for="hard">Hard</label>
+				<br><br>
+				<input type="submit" class="btn btn-primary" value="Start Game"></input>
+			</form>
+		</div>
+	</div>
+
+
+	<%- include('partials/footer') %>
