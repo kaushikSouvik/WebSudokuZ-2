@@ -230,7 +230,7 @@ app.route("/startgame")
             minutes = 20
         }
         //----
-        let sudokuObj = new GenerateSudoku.GenerateSudoku()
+        let sudokuObj = new GenerateSudoku()
         let sudokuData = sudokuObj.call(choice)
 
         // -----

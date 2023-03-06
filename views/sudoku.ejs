@@ -157,7 +157,7 @@
 
 
                                 document.getElementById("points").value = "0"
-                                document.getElementById("message").value = "Sorry! You have utilized all your lives. Better luck next time &#128542;"
+                                document.getElementById("message").value = "Sorry! You have utilized all your lives. Better luck next time."
                                 document.getElementById('sudoku').submit();
                             }
 
@@ -169,7 +169,7 @@
                             document.getElementById("timer").value = countdownEl.innerText
                             document.getElementById("difficulty").value = "<%=difficulty%>";
                             document.getElementById("lifeInput").value = finalLife
-                            document.getElementById("message").value = "Congratulations! You did it ! &#128526;";
+                            document.getElementById("message").value = "Congratulations! You did it.";
                             document.getElementById("points").value = "<%=points%>";
                             document.getElementById('sudoku').submit();
 
@@ -200,7 +200,7 @@
                         document.getElementById("timer").value = mins + ":" + secs;
                         document.getElementById("difficulty").value = "<%=difficulty%>"
                         document.getElementById("lifeInput").value = life
-                        document.getElementById("message").value = "Sorry,TimeOut !! Better luck next time &#128542; "
+                        document.getElementById("message").value = "Sorry,TimeOut !! Better luck next time. "
                         document.getElementById("points").value = 0
                         document.getElementById('sudoku').submit();
                     }
