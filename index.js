@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //import GenerateSudoku from path.join(__dirname, 'generateSudoku.js')
 import { GenerateSudoku } from "./generateSudoku.js";
+//import { GenerateSudoku } from "./generateSudoku.js";
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
@@ -289,7 +290,7 @@ app.route("/howtoplay")
 
 app.route("/notfound")
     .get(function(req, res){
-        res.render("notFound");
+        res.render("notFound", {msg: "Page Not Found"});
     })
 app.get('*', (req, res) => {
         res.redirect("/notfound")

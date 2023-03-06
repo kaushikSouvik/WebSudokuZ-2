@@ -1,4 +1,4 @@
-class GenerateSudoku {
+export class GenerateSudoku {
 
     gen_unsolved_sudoku(board, filled) {
 
@@ -175,7 +175,7 @@ class GenerateSudoku {
     }
 }
 
-module.exports = {
-    GenerateSudoku
-}
+// module.exports = {
+//     GenerateSudoku
+// }
 
